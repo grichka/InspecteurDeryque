@@ -168,7 +168,7 @@ class RestXML
 			}
 			
 			$message = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
-            $message .= "<data_dt>\n";
+            $message .= '<data_dt start_t="'.date(DateTime::ISO8601, $report_data[0]["timestamp"]/*$d[$datatype]*/).'">\n';
             
             $first = true;
 			foreach($report_data as $d){
@@ -176,7 +176,6 @@ class RestXML
 				foreach($datamod->getVariables() as $datatype => $value){
 					if($datatype === "timestamp"){
 						if($first){
-							$message .= "    <start_t>".date(DateTime::ISO8601, $d[$datatype])."</start_t>\n";
 							$message .= "    <dt>"."0"."</dt>\n";
 							$first = false;
 						}
